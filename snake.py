@@ -12,10 +12,13 @@ class Snake:
 
   def __init__(self) -> None:
     self.segments = []
-    self.create_snake()
+    self.createSnake()
     self.head = self.segments[0]
   
-  def create_snake(self):
+  def getHead(self):
+    return self.head
+
+  def createSnake(self):
     for position in STARTING_POSITIONS:
       new_segment=Turtle("square")
       if len(self.segments) == 0:
