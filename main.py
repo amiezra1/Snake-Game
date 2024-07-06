@@ -27,9 +27,24 @@ while game_is_on:
   time.sleep(spid_snake)
   snake.move()
 
-  if snake.getHead().distance(food)<15:
+  #Detect collision with food
+  if snake.getHead().distance(food)<20:
     food.foodLocation()
+    snake.extend()
     scoreboard.setScore()
+
+  #Detect collision with wall
+  if snake.getHead().xcor() > 290 or snake.getHead().xcor() < -290 or snake.getHead().ycor() > 290 or snake.getHead().ycor() < -290:
+    game_is_on = False
+    scoreboard.gameOver()
+  
+  #Detect collision with tail
+  for segment in snake.getSegments():
+    if segment == snake.getHead():
+      pass
+    elif snake.getHead().distance(segment) < 10:
+      game_is_on = False
+      scoreboard.gameOver()
 
 
 
